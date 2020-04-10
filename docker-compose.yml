@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: "mongodb"
+    volumes:
+      - data.mongo:/data/db
+  todo.app:
+    build: 
+      context: ./backend
+    image: todo.app.image
+    container_name: "todo.app"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/todo
+volumes:
+  data.mongo:
