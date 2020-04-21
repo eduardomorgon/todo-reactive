@@ -30,7 +30,7 @@ public class TodoRestController {
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Todo> findAll() {
         
-        return this.service.findAll().delayElements(Duration.ofMillis(200)).log();
+        return this.service.findAll().delayElements(Duration.ofMillis(1000)).log();
     }
     
     @GetMapping("{id}")
