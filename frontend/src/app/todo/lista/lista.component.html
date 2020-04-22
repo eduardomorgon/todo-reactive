@@ -1,0 +1,27 @@
+
+<app-todo-form [todo]="todo" [todos]="todos"></app-todo-form>
+&nbsp;
+<div class="jumbotron " *ngIf="(todos | async)?.length > 0; else loading">
+
+  <div class="card-columns">
+    <div class="card border-primary mb-3" style="max-width: 18rem;" *ngFor="let todo of todos | async">
+      <div class="card-header text-center text-primary">{{todo.label | uppercase}}</div>
+      <div class="card-body text-primary">
+        <p class="card-text">{{todo.task}}</p>
+      </div>
+      <div class="card-footer bg-transparent text-center">
+        <div class="btn-group" role="group">
+          <button type="button" (click)="editar(todo)" class="btn btn-primary btn-sm">Editar</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" (click)="excluir(todo.id)" class="btn btn-danger btn-sm">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<ng-template #loading>
+  <div class="alert alert-primary text-center" role="alert">
+    <h2>Não existe Tarefa cadastrada!</h2>
+  </div>
+</ng-template>
