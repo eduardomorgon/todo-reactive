@@ -1,0 +1,15 @@
+<div class="container"> 
+    <form #f="ngForm" class="form-inline">
+      <input type="hidden" name="id" [(ngModel)]="todo.id"/>
+      <label for="tarefa" class="mr-sm-2">Tarefa:</label>
+      <input type="text" class="form-control  mb-2 mr-sm-2" 
+             id="tarefa" name="task" [(ngModel)]="todo.task" 
+             placeholder="Tarefa" required maxlength="15" minlength="5">
+      <label for="label" class="mr-sm-2">Label:</label>
+      <input type="text" class="form-control  mb-2 mr-sm-2" 
+             id="label" name="label" [(ngModel)]="todo.label"
+             placeholder="Label" required maxlength="10" minlength="3" oninput="this.value = this.value.toUpperCase()">
+      <button type="submit" (click)="salvar(todo)" class="btn btn-primary mb-2" [disabled]="f.form.invalid">Salvar</button>
+    </form>
+  </div>
+  &nbsp;
