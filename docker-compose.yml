@@ -21,5 +21,16 @@ services:
       - mongodb
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/todo
+  todo.frontend:
+    build: 
+      context: ./frontend
+    image: todo.frontend.image
+    container_name: "todo.frontend"
+    ports:
+      - "80:80"
+    depends_on:
+      - todo.app
+    links:
+      - todo.app
 volumes:
   data.mongo:
